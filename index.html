@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<script>
+    function onNavigate(event) {
+        event.preventDefault()        
+        
+        const url_input = document.getElementById("url-input");
+        try {
+            const url = new URL(url_input.value)
+            window.location = url;
+        }
+        catch(e) {
+            const error_elem = document.getElementById("error_elem");
+            error_elem.style.visibility = "visible";
+        }
+        
+    }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+    .background {
+        background-color: #25242F;
+    }
+
+    .frm {
+        margin-top: 200px;
+        margin-left: 50px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        max-width: 600px;
+        gap: 10px;
+    }
+
+    .urltext {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 30px;
+        font-weight: 600;
+        color: #EEEEEE;
+    }
+
+    .urlinp {
+        height: 30px;
+        font-family: 'Open Sans', sans-serif;
+        padding-left: 10px;
+        font-size: 18px;
+    }
+
+    .btnsub {
+        height: 40px;  
+        font-family: 'Open Sans', sans-serif; 
+        font-size: 20px;
+        background-color: #25242F;
+        color: #EEEEEE;
+        cursor: pointer;
+    }
+
+    .errorp {
+        font-weight: 600;
+        padding: 5px;
+        color: #C61818;
+        font-family: 'Open Sans', sans-serif; 
+        font-size: 20px;
+
+        background-color: #EEEEEE;
+    }
+</style>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Whiteroom-FullScreenView</title>
+  </head>
+  <body class="background">
+    <form class="frm" onsubmit="return onNavigate(event);">
+        <label class="urltext" for="url-input">Provide a valid URL to navigate:</label>
+        <input class="urlinp" type="text" name="url-input" id="url-input">
+        <input type="submit" onsubmit="return onNavigate(event);" hidden />
+        <button class="btnsub" type="submit">Navigate</button>
+        <p class="errorp" id="error_elem" style="visibility: hidden;">Error: Invalid URL</p>
+    </form>
+  </body>
+</html>
